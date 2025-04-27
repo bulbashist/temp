@@ -1,0 +1,145 @@
+$content-width: 400px;
+$grey-blue: rgb(185, 204, 210);
+
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+
+  & > .headline {
+    text-align: center;
+  }
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 100%;
+  z-index: -1;
+  background-color: $grey-blue;
+
+  & > .red-line {
+    width: 100%;
+    max-height: 100%;
+    background-color: #cc0000;
+  }
+}
+
+.list-wrapper {
+  position: relative;
+
+  & > .list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    list-style-type: none;
+    margin: 500px 10px;
+  }
+}
+
+.element {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: calc(10px + 1%);
+
+  & > *:not(.button) {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  & > .button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $grey-blue;
+    text-align: center;
+    line-height: 35px;
+  }
+
+  & > .intersected-button {
+    background-color: #cc0000;
+    color: white;
+  }
+
+  & > .date {
+    max-width: $content-width;
+    text-align: right;
+  }
+
+  & > .intersected-date {
+    color: red;
+  }
+
+  & > .content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    max-width: $content-width;
+    border: 1px solid #f5f5f5;
+    border-radius: 0.625rem;
+    padding: 20px;
+    transition: transform 1s;
+    transform: translateY(200px);
+    text-align: center;
+    box-shadow: 0 10px 15px -3px rgba(230, 230, 230, 0.4),
+      0 4px 6px -4px rgba(230, 230, 230, 0.4);
+
+    & > img {
+      width: 100%;
+    }
+  }
+
+  & > .intersected-content {
+    transform: translateY(0px);
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .element:nth-child(2n + 1) {
+    & > .content {
+      order: 1;
+    }
+
+    & > .button {
+      order: 2;
+    }
+
+    & > .date {
+      order: 3;
+      text-align: left;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .element {
+    justify-content: flex-start;
+
+    & > .button {
+      order: 1;
+    }
+
+    & > .date {
+      order: 2;
+      flex-grow: 0;
+    }
+
+    & > .content {
+      max-width: none;
+      order: 3;
+    }
+  }
+
+  .line {
+    left: calc(20px + 10px);
+  }
+}
